@@ -48,6 +48,12 @@ const auth = (req, res, next) => {
   catch { res.status(401).json({ error: 'Invalid token' }); }
 };
 
+const adminOnly = async (req, res, next) => {
+  const user = await findOne(users, { id: req.user.id });
+  if (!user?.isAdmin) return res.status(403).json({ error: 'Admin access required' });
+  next();
+};
+
 // ── Auth routes ────────────────────────────────────────
 app.post('/api/auth/signup', async (req, res) => {
   const { name, email, phone, password } = req.body;
@@ -75,7 +81,7 @@ app.post('/api/auth/login', async (req, res) => {
     return res.status(401).json({ error: 'Invalid credentials' });
 
   const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, JWT_SECRET, { expiresIn: '7d' });
-  res.json({ token, user: { id: user.id, name: user.name, email: user.email, phone: user.phone } });
+  res.json({ token, user: { id: user.id, name: user.name, email: user.email, phone: user.phone, isAdmin: user.isAdmin || false } });
 });
 
 app.get('/api/auth/me', auth, async (req, res) => {
@@ -100,7 +106,7 @@ app.get('/api/requests', auth, async (req, res) => {
 });
 
 // ── Admin routes ───────────────────────────────────────
-app.get('/api/admin/requests', auth, async (req, res) => {
+app.get('/api/admin/requests', auth, adminOnly, async (req, res) => {
   const [list, allUsers] = await Promise.all([find(requests, {}), find(users, {})]);
   const userMap = Object.fromEntries(allUsers.map(u => [u.id, u]));
   const enriched = list.map(r => ({
@@ -112,19 +118,19 @@ app.get('/api/admin/requests', auth, async (req, res) => {
   res.json(enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)));
 });
 
-app.get('/api/admin/users', auth, async (req, res) => {
+app.get('/api/admin/users', auth, adminOnly, async (req, res) => {
   const list = await find(users, {});
   const safe = list.map(({ password: _, ...u }) => u);
   res.json(safe.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)));
 });
 
-app.patch('/api/admin/requests/:id', auth, async (req, res) => {
+app.patch('/api/admin/requests/:id', auth, adminOnly, async (req, res) => {
   await update(requests, { id: req.params.id }, { $set: { status: req.body.status } });
   res.json({ success: true });
 });
 
 // ── Admin: send email to customer ──────────────────────
-app.post('/api/admin/email', auth, async (req, res) => {
+app.post('/api/admin/email', auth, adminOnly, async (req, res) => {
   const { to, to_name, subject, message, request_id } = req.body;
   if (!to || !subject || !message)
     return res.status(400).json({ error: 'to, subject and message are required' });
@@ -188,7 +194,7 @@ app.post('/api/admin/email', auth, async (req, res) => {
 });
 
 // Admin: get email history
-app.get('/api/admin/emails', auth, async (req, res) => {
+app.get('/api/admin/emails', auth, adminOnly, async (req, res) => {
   const list = await find(emails, {});
   res.json(list.sort((a, b) => new Date(b.sent_at) - new Date(a.sent_at)));
 });

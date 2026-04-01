@@ -50,9 +50,11 @@ export default function Navbar({ user, onLogout }) {
                 <Link to="/dashboard" className="text-sm font-medium text-slate-600 hover:text-brand-blue-700 transition-colors">
                   Hi, {user.name?.split(' ')[0]}
                 </Link>
-                <Link to="/admin" className="text-sm font-medium text-brand-emerald-600 hover:text-brand-emerald-700 transition-colors">
-                  Admin
-                </Link>
+                {user.isAdmin && (
+                  <Link to="/admin" className="text-sm font-medium text-brand-emerald-600 hover:text-brand-emerald-700 transition-colors">
+                    Admin
+                  </Link>
+                )}
                 <button onClick={onLogout} className="text-sm font-medium text-slate-500 hover:text-red-500 transition-colors">
                   Logout
                 </button>
@@ -96,7 +98,9 @@ export default function Navbar({ user, onLogout }) {
             {user ? (
               <>
                 <Link to="/dashboard" onClick={() => setOpen(false)} className="px-4 py-2 text-sm font-medium text-slate-700">Dashboard</Link>
-                <Link to="/admin" onClick={() => setOpen(false)} className="px-4 py-2 text-sm font-medium text-brand-emerald-600">Admin</Link>
+                {user.isAdmin && (
+                  <Link to="/admin" onClick={() => setOpen(false)} className="px-4 py-2 text-sm font-medium text-brand-emerald-600">Admin</Link>
+                )}
                 <button onClick={() => { onLogout(); setOpen(false) }} className="px-4 py-2 text-sm font-medium text-red-500 text-left">Logout</button>
               </>
             ) : (

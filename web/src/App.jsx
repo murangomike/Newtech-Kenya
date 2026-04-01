@@ -34,7 +34,7 @@ export default function App() {
           <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <Signup onAuth={setUser} />} />
           <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login onAuth={setUser} />} />
           <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
-          <Route path="/admin" element={user ? <Admin user={user} /> : <Navigate to="/login" />} />
+          <Route path="/admin" element={user?.isAdmin ? <Admin user={user} /> : <Navigate to="/dashboard" />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
