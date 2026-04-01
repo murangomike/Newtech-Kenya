@@ -20,7 +20,7 @@ function EmailModal({ target, onClose }) {
     to_name:  target?.name  || '',
     subject:  target?.service ? `Re: ${target.service} Request` : '',
     message:  target?.service
-      ? `Hi ${target?.name || 'there'},\n\nThank you for your interest in our ${target.service} services.\n\n`
+      ? `Thank you for your interest in our ${target.service} services.\n\n`
       : '',
     request_id: target?.request_id || null,
   })
