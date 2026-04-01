@@ -203,10 +203,23 @@ export default function Admin({ user }) {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-900 to-blue-900 py-10">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-2xl font-bold text-white">Admin Panel</h1>
-          <p className="text-slate-300 text-sm mt-1">Manage requests, clients and communications</p>
+      <div className="hero-section relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-10">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center backdrop-blur-sm">
+              <Users className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-white">Admin Panel</h1>
+              <p className="text-slate-300 text-sm mt-0.5">Manage requests, clients and communications</p>
+            </div>
+          </div>
         </div>
       </div>
 
