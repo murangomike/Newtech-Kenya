@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: newtech-backend
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      JWT_SECRET: newtech-kenya-jwt-secret-2024
+    volumes:
+      - backend_data:/app
+    restart: unless-stopped
+    networks:
+      - newtech-net
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: newtech-web
+    ports:
+      - "4001:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - newtech-net
+
+volumes:
+  backend_data:
+
+networks:
+  newtech-net:
+    driver: bridge
