@@ -57,7 +57,7 @@ const services = [
     icon: Server,
     title: 'On-Prem Hosting',
     color: 'blue',
-    img: 'https://images.unsplash.com/photo-1580820767153-83a0d2b93296?auto=format&fit=crop&w=700&h=280&q=80',
+    img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=700&h=280&q=80',
     desc: 'Bootstrap your own private cloud with Proxmox VE and Kubernetes — full control, no vendor lock-in.',
     features: ['Proxmox VE setup', 'Bare-metal Kubernetes', 'Storage (Ceph / NFS)', 'Networking & firewall'],
   },

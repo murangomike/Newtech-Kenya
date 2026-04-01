@@ -61,17 +61,22 @@ body {
   filter: brightness(1.1);
 }
 
-/* Hero section — single class, no conflicts with Tailwind bg utilities */
+/* Hero section — photo + gradient orbs, no Tailwind bg-image conflict */
 .hero-section {
   background-color: #0a0f1e;
   background-image:
-    /* Bright colour orbs */
-    radial-gradient(ellipse 70% 60% at 10% 55%,  rgba(37,  99, 235, 0.55) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 55% at 90% 10%,  rgba(5,  150, 105, 0.50) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 55% 100%, rgba(99, 102, 241, 0.40) 0%, transparent 60%),
+    /* Colour orbs (front layers) */
+    radial-gradient(ellipse 70% 60% at 10% 55%,  rgba(37,  99, 235, 0.60) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 55% at 90% 10%,  rgba(5,  150, 105, 0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 55% 100%, rgba(99, 102, 241, 0.45) 0%, transparent 60%),
     radial-gradient(ellipse 40% 40% at 75% 55%,  rgba(52, 211, 153, 0.30) 0%, transparent 50%),
-    /* Base gradient */
-    linear-gradient(145deg, #0d1a3a 0%, #0f2560 40%, #043a2a 100%);
+    /* Dark scrim so text stays readable over the photo */
+    linear-gradient(145deg, rgba(10, 20, 50, 0.88) 0%, rgba(4, 20, 40, 0.80) 50%, rgba(2, 30, 20, 0.85) 100%),
+    /* Background hero photo */
+    url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80');
+  background-size: auto, auto, auto, auto, auto, cover;
+  background-position: center, center, center, center, center, center;
+  background-repeat: no-repeat;
 }
 
 /* Glowing line separator */

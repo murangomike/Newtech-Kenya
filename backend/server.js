@@ -140,12 +140,23 @@ app.post('/api/admin/email', auth, async (req, res) => {
       </div>
       <div style="background: white; padding: 36px 40px; border-radius: 0 0 12px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
         <p style="color: #1e293b; font-size: 16px; margin-top: 0;">Hi ${to_name || 'there'},</p>
-        <div style="color: #334155; font-size: 15px; line-height: 1.7; white-space: pre-line;">${message.replace(/\n/g, '<br/>')}</div>
+        <div style="color: #334155; font-size: 15px; line-height: 1.7;">${message.replace(/\n/g, '<br/>')}</div>
         <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 28px 0;" />
-        <p style="color: #64748b; font-size: 13px; margin: 0;">
-          NewTech Kenya &mdash; <a href="tel:+254791303899" style="color: #059669;">0791 303 899</a><br/>
-          Kilimani, Nairobi, Kenya
-        </p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="vertical-align: top; padding-right: 20px; border-right: 3px solid #059669; width: 4px;">&nbsp;</td>
+            <td style="padding-left: 16px;">
+              <p style="margin: 0 0 2px; font-weight: 700; color: #1e293b; font-size: 14px;">Mike Murango</p>
+              <p style="margin: 0 0 2px; color: #059669; font-size: 13px; font-weight: 600;">NewTech Kenya</p>
+              <p style="margin: 0 0 6px; color: #64748b; font-size: 12px;">Technology Solutions · Kilimani, Nairobi</p>
+              <p style="margin: 0; font-size: 12px;">
+                <a href="tel:+254791303899" style="color: #2563eb; text-decoration: none;">📞 0791 303 899</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:m.murango@newtechkenya.com" style="color: #2563eb; text-decoration: none;">✉ m.murango@newtechkenya.com</a>
+              </p>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   `;
