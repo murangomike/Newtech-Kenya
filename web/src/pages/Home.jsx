@@ -35,20 +35,19 @@ export default function Home() {
     <div className="overflow-hidden">
 
       {/* ── HERO ─────────────────────────────────────────── */}
-      <section className="relative bg-gradient-hero hero-pattern min-h-screen flex items-center overflow-hidden">
+      <section className="hero-section relative min-h-screen flex items-center overflow-hidden">
 
-        {/* Background grid */}
-        <div className="absolute inset-0 opacity-[0.04]"
+        {/* Dot grid overlay */}
+        <div className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
-            backgroundSize: '60px 60px'
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)',
+            backgroundSize: '36px 36px',
           }}
         />
 
-        {/* Glowing orbs */}
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-blue-600/25 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute top-1/2 -right-40 w-[400px] h-[400px] bg-emerald-500/20 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/3 w-[350px] h-[350px] bg-indigo-600/15 rounded-full blur-[90px] pointer-events-none" />
+        {/* Extra glow orbs on top */}
+        <div className="absolute -top-20 left-1/4 w-[420px] h-[420px] bg-blue-500 rounded-full opacity-20 blur-[90px] pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-[320px] h-[320px] bg-emerald-400 rounded-full opacity-20 blur-[80px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10 w-full">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
@@ -260,15 +259,16 @@ export default function Home() {
       </section>
 
       {/* ── CTA BANNER ───────────────────────────────────── */}
-      <section className="relative py-24 bg-gradient-hero overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.05]"
+      <section className="hero-section relative py-24 overflow-hidden">
+        {/* Dot grid */}
+        <div className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)',
+            backgroundSize: '36px 36px',
           }}
         />
-        <div className="absolute top-0 left-1/4 w-80 h-80 bg-blue-500/20 rounded-full blur-[80px]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-emerald-500/20 rounded-full blur-[80px]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-400 rounded-full opacity-20 blur-[80px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-400 rounded-full opacity-20 blur-[80px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <span className="inline-flex items-center gap-2 bg-white/15 border border-white/30 text-emerald-300 text-sm font-bold px-5 py-2 rounded-full mb-6">
