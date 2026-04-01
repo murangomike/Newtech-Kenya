@@ -3,7 +3,7 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
-const Datastore = require('nedb');
+const Datastore = require('@seald-io/nedb');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
